@@ -287,7 +287,7 @@ async function calculateRSIForInterval(symbol: string, interval: string, baseUrl
 }
 
 // Wilder's RSI calculation (TradingView standard)
-function wilderRSI(closes: number[], period: number = 14): number | null {
+export function wilderRSI(closes: number[], period: number = 14): number | null {
   if (closes.length < period + 1) {
     console.warn(`⚠️ Insufficient data for RSI calculation: ${closes.length} periods, need ${period + 1}`);
     return null;
@@ -334,7 +334,7 @@ function wilderRSI(closes: number[], period: number = 14): number | null {
 }
 
 // Get trading signal based on RSI
-function getRSISignal(rsi: number | null): 'STRONG_BUY' | 'BUY' | 'NEUTRAL' | 'SELL' | 'STRONG_SELL' {
+export function getRSISignal(rsi: number | null): 'STRONG_BUY' | 'BUY' | 'NEUTRAL' | 'SELL' | 'STRONG_SELL' {
   if (!rsi) return 'NEUTRAL';
   
   if (rsi <= 20) return 'STRONG_BUY';

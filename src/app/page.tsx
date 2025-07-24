@@ -1,10 +1,12 @@
+'use client';
+
 import { AdvancedTradingTable } from '@/components/AdvancedTradingTable';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { NetworkStatus } from '@/components/NetworkStatus';
 
 export default function Home() {
   return (
-    <main className="container mx-auto px-4 py-8 max-w-[1600px]">
+    <main className="container mx-auto px-4 py-8 max-w-[1800px]">
       <div className="mb-8">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -12,60 +14,36 @@ export default function Home() {
               🚀 Crypto RSI Dashboard Pro
             </h1>
             <p className="text-muted-foreground">
-              Advanced cryptocurrency trading analysis with filtering, sorting & pagination
+              Advanced cryptocurrency RSI analysis with real-time WebSocket data from Binance
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <NetworkStatus />
             <ThemeToggle />
           </div>
         </div>
-        
-        {/* Network Status */}
-        <NetworkStatus className="mb-4" />
       </div>
 
-      <div className="space-y-8">
-        <AdvancedTradingTable
-          title="📊 Spot Trading"
-          apiEndpoint="/api/spot"
-          market="spot"
-        />
-        <AdvancedTradingTable
-          title="⚡ Futures Trading"
-          apiEndpoint="/api/futures"
-          market="futures"
-        />
-      </div>
-
-      <div className="mt-8 text-center text-sm text-muted-foreground bg-muted/30 p-4 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-          <div>
-            <h3 className="font-semibold mb-2">🔧 Features:</h3>
-            <ul className="space-y-1 text-xs">
-              <li>• Global search across all columns</li>
-              <li>• Sort by any column (price, volume, RSI, etc.)</li>
-              <li>• Filter by trading signals</li>
-              <li>• Pagination with customizable page size</li>
-              <li>• Export data to CSV</li>
-              <li>• Auto-refresh every 10 seconds</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-2">📊 RSI Signals:</h3>
-            <ul className="space-y-1 text-xs">
-              <li>🟢 <strong>Strong Buy:</strong> RSI ≤ 20 (Extremely oversold)</li>
-              <li>🟢 <strong>Buy:</strong> RSI ≤ 30 (Oversold)</li>
-              <li>⚪ <strong>Neutral:</strong> 30 &lt; RSI &lt; 70 (Normal range)</li>
-              <li>🔴 <strong>Sell:</strong> RSI ≥ 70 (Overbought)</li>
-              <li>🔴 <strong>Strong Sell:</strong> RSI ≥ 80 (Extremely overbought)</li>
-            </ul>
-          </div>
+      {/* Side by Side Tables - Compact Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Spot Table */}
+        <div className="space-y-2">
+          <h2 className="text-xl font-bold">📈 Spot Market</h2>
+          <AdvancedTradingTable 
+            title="Top Spot Trading Pairs"
+            apiEndpoint="/api/spot"
+            market="spot"
+          />
         </div>
-        <div className="mt-4 pt-4 border-t border-muted-foreground/20">
-          <p className="text-center">
-            RSI calculated using Wilder&apos;s method • Data from Binance API • 
-            <span className="font-semibold">For educational purposes only - Not financial advice</span>
-          </p>
+
+        {/* Futures Table */}
+        <div className="space-y-2">
+          <h2 className="text-xl font-bold">🚀 Futures Market</h2>
+          <AdvancedTradingTable 
+            title="Top Futures Trading Pairs"
+            apiEndpoint="/api/futures"
+            market="futures"
+          />
         </div>
       </div>
     </main>

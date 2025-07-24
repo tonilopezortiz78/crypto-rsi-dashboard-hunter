@@ -139,17 +139,17 @@ export function AdvancedTradingTable({ title, apiEndpoint, market }: AdvancedTra
   if (loading && pairs.length === 0) {
     return (
       <Card className="border-border">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg flex items-center gap-2">
             {title}
-            <Badge variant="outline" className="ml-2">
+            <Badge variant="outline" className="text-xs">
               {market.toUpperCase()}
             </Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-center h-32">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <CardContent className="pt-3">
+          <div className="flex items-center justify-center h-24">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
           </div>
         </CardContent>
       </Card>
@@ -159,18 +159,18 @@ export function AdvancedTradingTable({ title, apiEndpoint, market }: AdvancedTra
   if (error) {
     return (
       <Card className="border-destructive">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg flex items-center gap-2">
             {title}
-            <Badge variant="outline" className="ml-2">
+            <Badge variant="outline" className="text-xs">
               {market.toUpperCase()}
             </Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-3">
           <div className="text-destructive text-center">
-            <p>Error: {error}</p>
-            <Button onClick={handleManualRefresh} className="mt-4">
+            <p className="text-sm">Error: {error}</p>
+            <Button onClick={handleManualRefresh} className="mt-3" size="sm">
               Try Again
             </Button>
           </div>
@@ -181,68 +181,66 @@ export function AdvancedTradingTable({ title, apiEndpoint, market }: AdvancedTra
 
   return (
     <Card className="border-border">
-      <CardHeader>
-        <div className="flex flex-col space-y-4">
-          {/* Title and Controls */}
+      <CardHeader className="pb-3">
+        <div className="flex flex-col space-y-2">
+          {/* Title and Controls - Compact */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CardTitle>{title}</CardTitle>
-              <Badge variant="outline" className="ml-2">
+              <CardTitle className="text-lg">{title}</CardTitle>
+              <Badge variant="outline" className="text-xs">
                 {market.toUpperCase()}
               </Badge>
               {loading && (
-                <RefreshCw className="h-4 w-4 animate-spin text-muted-foreground" />
+                <RefreshCw className="h-3 w-3 animate-spin text-muted-foreground" />
               )}
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => setAutoRefresh(!autoRefresh)}
-                className={autoRefresh ? 'bg-green-100 dark:bg-green-900' : ''}
+                className={`text-xs h-7 px-2 ${autoRefresh ? 'bg-green-100 dark:bg-green-900' : ''}`}
               >
-                {autoRefresh ? '🟢 Auto' : '⏸️ Manual'}
+                {autoRefresh ? '🟢' : '⏸️'}
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleManualRefresh}
                 disabled={loading}
+                className="text-xs h-7 px-2"
               >
-                <RefreshCw className="h-4 w-4 mr-1" />
-                Refresh
+                <RefreshCw className="h-3 w-3" />
               </Button>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleExportData}
+                className="text-xs h-7 px-2"
               >
-                <Download className="h-4 w-4 mr-1" />
-                Export
+                <Download className="h-3 w-3" />
               </Button>
             </div>
           </div>
 
-          {/* Stats and Last Update */}
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div className="flex flex-wrap gap-2">
+          {/* Stats and Last Update - Compact */}
+          <div className="flex flex-col gap-1 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-wrap gap-1">
               {Object.entries(signalStats).map(([signal, count]) => (
-                <Badge key={signal} variant="secondary" className="text-xs">
+                <Badge key={signal} variant="secondary" className="text-xs px-1 py-0">
                   {signal.replace('_', ' ')}: {count}
                 </Badge>
               ))}
             </div>
             <div className="text-xs text-muted-foreground">
-              Last update: {lastUpdate.toLocaleTimeString()} • 
-              {pairs.length} pairs • 
-              Auto-refresh: {autoRefresh ? 'ON' : 'OFF'}
+              {lastUpdate.toLocaleTimeString()} • {pairs.length} pairs
             </div>
           </div>
         </div>
       </CardHeader>
       
-      <CardContent>
+      <CardContent className="pt-3">
         <DataTable
           columns={columns}
           data={pairs}
