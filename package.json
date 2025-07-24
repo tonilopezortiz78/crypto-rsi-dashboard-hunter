@@ -1,27 +1,69 @@
 {
-  "name": "rsi-dashboard",
-  "version": "0.1.0",
-  "private": true,
+  "name": "crypto-rsi-dashboard-hunter",
+  "version": "1.0.0",
+  "description": "Professional real-time cryptocurrency RSI dashboard with live Binance data, smooth animations, and dark theme support",
+  "private": false,
+  "keywords": [
+    "crypto",
+    "cryptocurrency",
+    "rsi",
+    "trading",
+    "dashboard",
+    "binance",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwind",
+    "real-time",
+    "websocket",
+    "technical-analysis"
+  ],
+  "author": "Tony",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter/issues"
+  },
+  "homepage": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter#readme",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
+    "@types/ws": "^8.18.1",
+    "axios": "^1.11.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "next": "15.4.3",
+    "next-themes": "^0.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.3"
+    "tailwind-merge": "^3.3.1",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.3",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.5",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
