@@ -27,11 +27,30 @@ export function AdvancedTradingTable({ title, apiEndpoint, market }: AdvancedTra
     try {
       if (loading) setLoading(true);
       
-      const response = await fetch(`${apiEndpoint}?limit=50`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      
+      const response = await fetch(`${apiEndpoint}?limit=50`, {
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        if (response.status === 500) {
+          throw new Error('Binance API connection issues detected. RSI data may be incomplete.');
+        } else if (response.status === 429) {
+          throw new Error('Rate limit exceeded. Please wait a moment before refreshing.');
+        } else {
+          throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+        }
       }
+      
       const newData: TradingPair[] = await response.json();
+      
+      if (!Array.isArray(newData)) {
+        throw new Error('Invalid data format received from API');
+      }
       
       // Only update if data actually changed
       const hasChanged = JSON.stringify(newData) !== JSON.stringify(pairsRef.current);
@@ -39,15 +58,31 @@ export function AdvancedTradingTable({ title, apiEndpoint, market }: AdvancedTra
         setPairs(newData);
         pairsRef.current = newData;
         setLastUpdate(new Date());
+        
+        // Log data quality information
+        const withRSI = newData.filter(item => item.rsi1d !== null).length;
+        const total = newData.length;
+        if (withRSI < total * 0.8) {
+          console.warn(`⚠️ ${market} market: Only ${withRSI}/${total} pairs have RSI data (${Math.round(withRSI/total*100)}%)`);
+        }
       }
       
       setError(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      if (err instanceof Error) {
+        if (err.name === 'AbortError') {
+          setError('Request timeout - Binance API may be experiencing issues');
+        } else {
+          setError(err.message);
+        }
+      } else {
+        setError('An unexpected error occurred');
+      }
+      console.error(`❌ Error fetching ${market} data:`, err);
     } finally {
       setLoading(false);
     }
-  }, [apiEndpoint, loading]);
+  }, [apiEndpoint, loading, market]);
 
   useEffect(() => {
     fetchData();

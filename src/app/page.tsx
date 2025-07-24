@@ -1,5 +1,6 @@
 import { AdvancedTradingTable } from '@/components/AdvancedTradingTable';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { NetworkStatus } from '@/components/NetworkStatus';
 
 export default function Home() {
   return (
@@ -14,8 +15,13 @@ export default function Home() {
               Advanced cryptocurrency trading analysis with filtering, sorting & pagination
             </p>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+          </div>
         </div>
+        
+        {/* Network Status */}
+        <NetworkStatus className="mb-4" />
       </div>
 
       <div className="space-y-8">
