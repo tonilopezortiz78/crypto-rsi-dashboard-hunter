@@ -4,15 +4,15 @@ import { BinanceTickerData, BinanceKlineResponse, TradingPair } from '@/types/tr
 const BINANCE_API_BASE = 'https://api.binance.com/api/v3';
 const BINANCE_FUTURES_BASE = 'https://fapi.binance.com/fapi/v1';
 
-// Get top 10 pairs by 24h volume for spot trading
-export async function getTopSpotPairs(): Promise<TradingPair[]> {
+// Get top coins by 24h volume for spot trading (increased from 10 to 50)
+export async function getTopSpotPairs(limit: number = 50): Promise<TradingPair[]> {
   try {
     const response = await axios.get<BinanceTickerData[]>(`${BINANCE_API_BASE}/ticker/24hr`);
     
     const usdtPairs = response.data
       .filter(ticker => ticker.symbol.endsWith('USDT'))
       .sort((a, b) => parseFloat(b.quoteVolume) - parseFloat(a.quoteVolume))
-      .slice(0, 10);
+      .slice(0, limit);
     
     const tradingPairs: TradingPair[] = await Promise.all(
       usdtPairs.map(async (ticker) => {
@@ -40,15 +40,15 @@ export async function getTopSpotPairs(): Promise<TradingPair[]> {
   }
 }
 
-// Get top 10 pairs by 24h volume for futures trading
-export async function getTopFuturesPairs(): Promise<TradingPair[]> {
+// Get top coins by 24h volume for futures trading (increased from 10 to 50)
+export async function getTopFuturesPairs(limit: number = 50): Promise<TradingPair[]> {
   try {
     const response = await axios.get<BinanceTickerData[]>(`${BINANCE_FUTURES_BASE}/ticker/24hr`);
     
     const usdtPairs = response.data
       .filter(ticker => ticker.symbol.endsWith('USDT'))
       .sort((a, b) => parseFloat(b.quoteVolume) - parseFloat(a.quoteVolume))
-      .slice(0, 10);
+      .slice(0, limit);
     
     const tradingPairs: TradingPair[] = await Promise.all(
       usdtPairs.map(async (ticker) => {
