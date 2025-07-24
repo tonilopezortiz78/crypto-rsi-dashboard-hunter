@@ -1,6 +1,6 @@
 {
   "name": "crypto-rsi-dashboard-hunter",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Professional real-time cryptocurrency RSI dashboard with live Binance data, smooth animations, and dark theme support",
   "private": false,
   "keywords": [
