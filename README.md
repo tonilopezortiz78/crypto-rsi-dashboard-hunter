@@ -43,7 +43,10 @@ A **professional real-time cryptocurrency RSI dashboard** built with Next.js 14,
 
 ### 🔧 **Technical Features**
 - **Performance Optimized** - Smart re-rendering and change detection
-- **Error Handling** - Graceful API failure recovery
+- **Advanced Error Handling** - Graceful API failure recovery with retries
+- **Network Resilience** - Automatic retry logic for connection timeouts
+- **Rate Limiting** - Respects Binance API limits with intelligent queuing
+- **Real-time Monitoring** - Network status dashboard with health checks
 - **TypeScript** - Full type safety for reliability
 - **Accessibility** - WCAG compliant components
 
@@ -155,12 +158,28 @@ The dashboard is fully responsive and works on:
 - **Tablet** (768px-1919px): Stacked tables
 - **Mobile** (320px-767px): Optimized mobile layout
 
-## 🔒 API Rate Limits
+## 🔒 API Rate Limits & Network Resilience
 
-The dashboard respects Binance API rate limits:
+The dashboard is built for reliability and respects Binance API limits:
+
+### **Rate Limiting**
 - **Weight limit**: 1200 requests per minute
-- **Order limit**: 10 orders per second
-- **Auto-retry**: Built-in retry logic with exponential backoff
+- **Intelligent queuing**: 100ms minimum interval between requests
+- **Auto-retry**: Built-in retry logic for network errors
+
+### **Network Resilience** 
+- **Timeout handling**: 10s general, 8s for historical data
+- **Automatic retries**: ETIMEDOUT and connection reset recovery
+- **Graceful degradation**: Shows price/volume even if RSI fails
+- **Real-time monitoring**: Live API health status display
+- **Error recovery**: Continues operation during partial failures
+
+### **Connection Issues**
+If you see connection timeout errors:
+1. Check the **Network Status** indicator in the dashboard
+2. Issues are often temporary due to Binance server load
+3. Data will automatically recover when connection stabilizes
+4. Price and volume data remains available during RSI calculation issues
 
 ## 🤝 Contributing
 
