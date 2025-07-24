@@ -12,8 +12,8 @@ A **professional real-time cryptocurrency RSI dashboard** built with Next.js 14,
 ### 📊 **Real-time Trading Data**
 - **Live Binance API Integration** - Real-time price, volume, and RSI data
 - **Dual Market Support** - Spot and Futures trading pairs side-by-side
-- **Top 10 Pairs** - Automatically sorted by 24h trading volume (USDT)
-- **Auto-refresh** - Updates every 5 seconds with smooth animations
+- **Top 50 Pairs** - Automatically sorted by 24h trading volume (USDT)
+- **Auto-refresh** - Updates every 10 seconds with toggle control
 
 ### 📈 **Advanced RSI Analysis**
 - **Multi-timeframe RSI** - 1h, 4h, and 1d RSI indicators
@@ -24,6 +24,15 @@ A **professional real-time cryptocurrency RSI dashboard** built with Next.js 14,
   - 🔴 **SELL** (RSI ≥ 70) - Overbought
   - 🔴 **STRONG SELL** (RSI ≥ 80) - Extremely overbought
   - ⚪ **NEUTRAL** (30 < RSI < 70) - Normal range
+
+### 📋 **Advanced Table Features**
+- **Global Search** - Search across all columns instantly
+- **Multi-Column Sorting** - Sort by price, volume, RSI, or any column
+- **Smart Filtering** - Filter by trading signals (Strong Buy, Buy, etc.)
+- **Pagination** - Handle 50+ coins with customizable page sizes (10-50)
+- **Column Visibility** - Show/hide columns as needed
+- **CSV Export** - Download trading data for analysis
+- **Auto-refresh Toggle** - Control data updates (auto/manual)
 
 ### 🎨 **Modern UI/UX**
 - **Dark/Light Theme** - Smooth theme switching with system detection
@@ -41,11 +50,12 @@ A **professional real-time cryptocurrency RSI dashboard** built with Next.js 14,
 ## 🛠 Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), React 18, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui components
-- **Data**: Binance REST API, Axios for HTTP requests
+- **UI Framework**: shadcn/ui components, Tailwind CSS
+- **Data Table**: TanStack Table for advanced features
+- **API**: Binance REST API, Axios for HTTP requests
 - **Theme**: next-themes for dark/light mode
 - **Icons**: Lucide React
-- **Performance**: Smart memoization, change detection
+- **Performance**: Smart memoization, change detection, optimized rendering
 
 ## 🚀 Quick Start
 
@@ -80,17 +90,19 @@ That's it! The dashboard will start pulling live data from Binance immediately.
 
 ## 📊 Dashboard Overview
 
-### **Spot Trading Table**
-- Top 10 spot pairs by 24h volume
-- Real-time price updates
-- 24h change percentage with trend indicators
-- Multi-timeframe RSI analysis
+### **Advanced Spot Trading Table**
+- Top 50 spot pairs by 24h volume with pagination
+- Global search and multi-column sorting
+- Signal filtering and column visibility controls
+- Real-time price updates with change detection
+- CSV export functionality
 
-### **Futures Trading Table** 
-- Top 10 futures pairs by 24h volume
+### **Advanced Futures Trading Table** 
+- Top 50 futures pairs by 24h volume with pagination
+- Same advanced filtering and sorting capabilities
 - Higher leverage trading opportunities
-- Same comprehensive RSI analysis
-- Live trading signals
+- Comprehensive RSI analysis across timeframes
+- Live trading signals with statistics
 
 ### **Data Display**
 - **Symbol**: Trading pair (e.g., BTCUSDT, ETHUSDT)
@@ -129,10 +141,12 @@ NEXT_PUBLIC_DEFAULT_THEME=system
 ```
 
 ### Customization
-- **Update Frequency**: Modify the 5-second interval in `TradingTable.tsx`
-- **Pair Count**: Change from top 10 to any number in the API calls
+- **Update Frequency**: Modify the 10-second interval in `AdvancedTradingTable.tsx`
+- **Pair Count**: Change from top 50 to any number in the API calls
+- **Pagination Size**: Adjust default page size in `DataTable.tsx`
 - **RSI Periods**: Adjust RSI calculation periods in `binance.ts`
 - **Signal Thresholds**: Customize buy/sell RSI levels
+- **Table Features**: Enable/disable specific table features
 
 ## 📱 Responsive Design
 
