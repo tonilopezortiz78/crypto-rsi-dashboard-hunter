@@ -57,7 +57,7 @@ A **professional real-time cryptocurrency RSI dashboard** built with Next.js 14,
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/[your-username]/crypto-rsi-dashboard-hunter.git
+git clone https://github.com/tonilopezortiz78/crypto-rsi-dashboard-hunter.git
 cd crypto-rsi-dashboard-hunter
 ```
 
@@ -175,4 +175,4 @@ This tool is for educational and informational purposes only. Cryptocurrency tra
 
 **Built with ❤️ for the crypto trading community**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/[your-username]/crypto-rsi-dashboard-hunter)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/tonilopezortiz78/crypto-rsi-dashboard-hunter)

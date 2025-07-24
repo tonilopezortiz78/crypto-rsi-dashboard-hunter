@@ -22,12 +22,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter.git"
+    "url": "https://github.com/tonilopezortiz78/crypto-rsi-dashboard-hunter.git"
   },
   "bugs": {
-    "url": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter/issues"
+    "url": "https://github.com/tonilopezortiz78/crypto-rsi-dashboard-hunter/issues"
   },
-  "homepage": "https://github.com/[your-username]/crypto-rsi-dashboard-hunter#readme",
+  "homepage": "https://github.com/tonilopezortiz78/crypto-rsi-dashboard-hunter#readme",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
